@@ -1,49 +1,764 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>blog</title>
-        <style>
-            header{
-            background-color:#0E4F90 ;
-            color: #FFFFFF
-            text-align: center;
-             max-width: 800px;
-             margin: 0 auto;
-             padding: 16px;
-             border: 5px solid #cf1010;
+<<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>AgroTech - Agronomia</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f4f8f2;
+            color: #263526;
+        }
+
+        /* CABEÇALHO */
+        header {
+            background: #14532d;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #86efac;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #86efac;
+        }
+
+        /* BANNER */
+        .hero {
+            min-height: 550px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+
+            background:
+                linear-gradient(rgba(0,70,30,0.7), rgba(0,40,15,0.75)),
+                url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .botao:hover {
+            background: #16a34a;
+            transform: scale(1.05);
+        }
+
+        /* SEÇÕES */
+        section {
+            padding: 70px 8%;
+        }
+
+        .titulo {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo h2 {
+            font-size: 36px;
+            color: #166534;
+            margin-bottom: 10px;
+        }
+
+        .titulo p {
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        /* SOBRE */
+        .sobre {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .sobre img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .sobre-texto h3 {
+            font-size: 28px;
+            color: #166534;
+            margin-bottom: 20px;
+        }
+
+        .sobre-texto p {
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .icone {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: #166534;
+            margin-bottom: 15px;
+            font-size: 23px;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #526052;
+        }
+
+        /* ÁREA VERDE */
+        .verde {
+            background: #dcfce7;
+        }
+
+        /* TABELA */
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #166534;
+            color: white;
+            padding: 18px;
+        }
+
+        td {
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f0fdf4;
+        }
+
+        /* SUSTENTABILIDADE */
+        .sustentabilidade {
+            background: #14532d;
+            color: white;
+            text-align: center;
+        }
+
+        .sustentabilidade .titulo h2 {
+            color: #86efac;
+        }
+
+        .sustentabilidade .titulo p {
+            color: #d1fae5;
+        }
+
+        .sustentabilidade-conteudo {
+            max-width: 900px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* CONTATO */
+        .contato {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #166534;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #15803d;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: #052e16;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        footer p {
+            margin: 8px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
             }
-            main{
-                background-color: #ffffff ;
-                color: #0E4F90
-                max-width: 800px;
-                margin: 0 auto;
-                padding: 16px;
-                display: flex;
+
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
             }
-            img{
-                width: 80px;
-                height: 80px;
+
+            .hero h1 {
+                font-size: 40px;
             }
-        </style>
-    </head>
-    <body>
-        <header>
-            <img src="imagem-blog.png" alt="Ícone em estilo pixel art com elementos de educação e tecnologia. No centro, um livro aberto emite linhas de circuito eletrônico 
-            e um ponteiro de mouse brilhante. À esquerda, há um chapéu de formatura; à direita, um notebook com a palavra 
-            "EDU" e gráfico na tela. Nos cantos inferiores, aparecem um ícone de engrenagem e um cérebro tecnológico.">
-            <h1>meu blog tech</h1>
-            <p>vou compartilhar conhecimentos sobre tecnologia e programação
+
+            .sobre {
+                grid-template-columns: 1fr;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 50px 5%;
+            }
+
+            .titulo h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+
+        <div class="logo">
+            🌱 Agro<span>Tech</span>
+        </div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Agronomia</a>
+            <a href="#areas">Áreas</a>
+            <a href="#culturas">Culturas</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+    </header>
+
+
+    <!-- INÍCIO -->
+    <section class="hero" id="inicio">
+
+        <div class="hero-content">
+
+            <h1>Agronomia</h1>
+
+            <p>
+                Conhecimento, tecnologia e sustentabilidade para transformar
+                a agricultura e construir um futuro melhor para o campo.
             </p>
-        </header>
-        <main>
-            <div>
-                <h2>meu primeiro post</h2>
-                <p>Por: luis dhein</p>
-                <p>boas-vindas ao meu blog! Aqui vou compartilhar dicas de programação e curiosidades da àrea de tecnologia.</p>
+
+            <a href="#sobre" class="botao">
+                Conheça a Agronomia
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+    <section id="sobre">
+
+        <div class="titulo">
+
+            <h2>O que é Agronomia?</h2>
+
+            <p>
+                Ciência e tecnologia trabalhando em favor da produção agrícola.
+            </p>
+
+        </div>
+
+
+        <div class="sobre">
+
+            <img
+                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1000&q=80"
+                alt="Plantação agrícola"
+            >
+
+            <div class="sobre-texto">
+
+                <h3>A importância do Agrônomo</h3>
+
+                <p>
+                    A Agronomia é uma área do conhecimento dedicada ao estudo,
+                    planejamento e desenvolvimento das atividades relacionadas
+                    à agricultura.
+                </p>
+
+                <p>
+                    O profissional de Agronomia trabalha com produção vegetal,
+                    manejo do solo, irrigação, tecnologia agrícola, conservação
+                    ambiental e diversos outros setores.
+                </p>
+
+                <p>
+                    O objetivo é aumentar a produtividade de forma eficiente,
+                    econômica e sustentável, preservando os recursos naturais.
+                </p>
+
             </div>
-        </main>
-    </body>
-    </html>
+
+        </div>
+
+    </section>
+
+
+    <!-- ÁREAS -->
+    <section class="verde" id="areas">
+
+        <div class="titulo">
+
+            <h2>Principais Áreas da Agronomia</h2>
+
+            <p>
+                Conheça alguns dos principais setores de atuação.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <div class="icone">🌱</div>
+
+                <h3>Produção Vegetal</h3>
+
+                <p>
+                    Técnicas para melhorar o cultivo, desenvolvimento e
+                    produtividade das plantas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">🧪</div>
+
+                <h3>Ciência do Solo</h3>
+
+                <p>
+                    Estudo da composição, fertilidade e conservação dos solos
+                    utilizados na agricultura.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">💧</div>
+
+                <h3>Irrigação</h3>
+
+                <p>
+                    Planejamento e utilização eficiente da água para o
+                    desenvolvimento das culturas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">🐛</div>
+
+                <h3>Fitossanidade</h3>
+
+                <p>
+                    Manejo de pragas, doenças e plantas daninhas que podem
+                    prejudicar as culturas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">🚜</div>
+
+                <h3>Mecanização</h3>
+
+                <p>
+                    Uso de máquinas e tecnologias para aumentar a eficiência
+                    das atividades agrícolas.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="icone">📡</div>
+
+                <h3>Agricultura de Precisão</h3>
+
+                <p>
+                    Utilização de sensores, GPS, drones e dados para melhorar
+                    o manejo das áreas agrícolas.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CULTURAS -->
+    <section id="culturas">
+
+        <div class="titulo">
+
+            <h2>Principais Culturas Agrícolas</h2>
+
+            <p>
+                Exemplos de culturas importantes para a agricultura.
+            </p>
+
+        </div>
+
+
+        <div class="tabela-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Cultura</th>
+                        <th>Utilização</th>
+                        <th>Importância</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>🌽 Milho</td>
+                        <td>Alimentação e ração</td>
+                        <td>Alta produção</td>
+                    </tr>
+
+                    <tr>
+                        <td>🌱 Soja</td>
+                        <td>Óleo e alimentação animal</td>
+                        <td>Exportação</td>
+                    </tr>
+
+                    <tr>
+                        <td>🌾 Trigo</td>
+                        <td>Farinha e alimentos</td>
+                        <td>Alimentação humana</td>
+                    </tr>
+
+                    <tr>
+                        <td>☕ Café</td>
+                        <td>Bebidas</td>
+                        <td>Importância econômica</td>
+                    </tr>
+
+                    <tr>
+                        <td>🍚 Arroz</td>
+                        <td>Alimentação</td>
+                        <td>Base alimentar</td>
+                    </tr>
+
+                    <tr>
+                        <td>🍬 Cana-de-açúcar</td>
+                        <td>Açúcar e biocombustíveis</td>
+                        <td>Energia e indústria</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- SUSTENTABILIDADE -->
+    <section class="sustentabilidade">
+
+        <div class="titulo">
+
+            <h2>🌎 Agronomia e Sustentabilidade</h2>
+
+            <p>
+                Produzir mais utilizando os recursos naturais de maneira
+                responsável.
+            </p>
+
+        </div>
+
+
+        <div class="sustentabilidade-conteudo">
+
+            <p>
+                A agricultura do futuro precisa conciliar produtividade,
+                rentabilidade e preservação ambiental.
+            </p>
+
+            <br>
+
+            <p>
+                Técnicas como plantio direto, rotação de culturas, manejo
+                adequado do solo, conservação da água e agricultura de precisão
+                podem contribuir para uma produção mais sustentável.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTATO -->
+    <section id="contato">
+
+        <div class="titulo">
+
+            <h2>Entre em Contato</h2>
+
+            <p>
+                Envie uma mensagem para saber mais sobre Agronomia.
+            </p>
+
+        </div>
+
+
+        <div class="contato">
+
+            <form onsubmit="enviarMensagem(event)">
+
+                <label for="nome">Nome</label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome"
+                    required
+                >
+
+
+                <label for="email">E-mail</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+
+                <label for="mensagem">Mensagem</label>
+
+                <textarea
+                    id="mensagem"
+                    placeholder="Digite sua mensagem"
+                    required
+                ></textarea>
+
+
+                <button type="submit">
+                    Enviar mensagem
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- RODAPÉ -->
+    <footer>
+
+        <p>🌱 <strong>AgroTech</strong> - Site sobre Agronomia</p>
+
+        <p>
+            Tecnologia • Agricultura • Sustentabilidade
+        </p>
+
+        <p>
+            © 2026 - Todos os direitos reservados
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function enviarMensagem(event) {
+
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+
+            alert(
+                "Obrigado, " + nome +
+                "! Sua mensagem foi enviada com sucesso."
+            );
+
+            document.querySelector("form").reset();
+        }
+
+    </script>
+
+</body>
+</html>
